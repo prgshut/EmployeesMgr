@@ -17,6 +17,7 @@ public class HiringAndFiring {
     private static final LocalDate START_HIRE_TIME = LocalDate.of(2022, 01, 01);
     private static final LocalDate END_HIRE_TIME = LocalDate.of(2023, 01, 01);
     private static final int MAX_FIRING = 3;
+    private static final long TIME_SLEEP = 1000;
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
     private final DispatcherService dispatcherService;
@@ -41,6 +42,11 @@ public class HiringAndFiring {
             }
 
             currentDate = currentDate.plusDays(1);
+            try {
+                Thread.sleep(TIME_SLEEP);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } while (END_HIRE_TIME.compareTo(currentDate) != 0);
 
     }
